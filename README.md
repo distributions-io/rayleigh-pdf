@@ -6,8 +6,9 @@ Probability Density Function
 
 The [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) (PDF) for a [Rayleigh](https://en.wikipedia.org/wiki/Rayleigh_distribution) random variable is
 
-<div class="equation" align="center" data-raw-text="" data-equation="eq:pdf_function">
-	<img src="" alt="Probability density function (PDF) for a Rayleigh distribution.">
+<div class="equation" align="center" data-raw-text="f(x;\sigma) = \begin{cases} \frac{x}{\sigma^2} e^{-x^2/(2\sigma^2)} &amp; \text{ for } x \ge 0 \\
+0 & \text{ otherwise } \end{cases}" data-equation="eq:pdf_function">
+	<img src="https://cdn.rawgit.com/distributions-io/rayleigh-pdf/97dabc8f55ecc2e50ffa8143a259d2c6fe551109/docs/img/eqn.svg" alt="Probability density function (PDF) for a Rayleigh distribution.">
 	<br>
 </div>
 
@@ -40,18 +41,18 @@ var matrix = require( 'dstructs-matrix' ),
 	i;
 
 out = pdf( 1 );
-// returns
+// returns ~0.607
 
 out = pdf( -1 );
 // returns 0
 
 x = [ 0, 0.5, 1, 1.5, 2, 2.5 ];
 out = pdf( x );
-// returns [...]
+// returns [ 0, ~0.441, ~0.607, ~0.487, ~0.271, ~0.11 ]
 
 x = new Int8Array( x );
 out = pdf( x );
-// returns Float64Array( [...] )
+// returns Float64Array( [0,0,~0.607,~0.607,~0.271,~0.271] )
 
 x = new Float32Array( 6 );
 for ( i = 0; i < 6; i++ ) {
@@ -66,9 +67,9 @@ mat = matrix( x, [3,2], 'float32' );
 
 out = pdf( mat );
 /*
-	[
-
-	   ]
+	[ 0     ~0.441
+	 ~0.607 ~0.487
+	 ~0.271 ~0.11 ]
 */
 ```
 
@@ -89,7 +90,7 @@ var x = [ 0, 0.5, 1, 1.5, 2, 2.5 ];
 var out = pdf( x, {
 	'sigma': 3
 });
-// returns [...]
+// returns [ 0, ~0.0548, ~0.105, ~0.147, ~0.178, ~0.196 ]
 ```
 
 For non-numeric `arrays`, provide an accessor `function` for accessing `array` values.
@@ -111,7 +112,7 @@ function getValue( d, i ) {
 var out = pdf( data, {
 	'accessor': getValue
 });
-// returns [...]
+// returns [ 0, ~0.441, ~0.607, ~0.487, ~0.271, ~0.11 ]
 ```
 
 
@@ -133,12 +134,12 @@ var out = pdf( data, {
 });
 /*
 	[
-		{'x':[0,]},
-		{'x':[1,]},
-		{'x':[2,]},
-		{'x':[3,]},
-		{'x':[4,]},
-		{'x':[5,]}
+		{'x':[0,0]},
+		{'x':[1,~0.441]},
+		{'x':[2,~0.607]},
+		{'x':[3,~0.487]},
+		{'x':[4,~0.271]},
+		{'x':[5,~0.11]}
 	]
 */
 
@@ -156,13 +157,13 @@ x = new Int8Array( [0,1,2,3,4] );
 out = pdf( x, {
 	'dtype': 'int32'
 });
-// returns Int32Array( [...] )
+// returns Int32Array( [0,0,0,0,0] )
 
 // Works for plain arrays, as well...
 out = pdf( [0,0.5,1,1.5,2], {
 	'dtype': 'uint8'
 });
-// returns Uint8Array( [...] )
+// returns Uint8Array( [0,0,0,0,0] )
 ```
 
 By default, the function returns a new data structure. To mutate the input data structure (e.g., when input values can be discarded or when optimizing memory usage), set the `copy` option to `false`.
@@ -179,7 +180,7 @@ x = [ 0, 0.5, 1, 1.5, 2 ];
 out = pdf( x, {
 	'copy': false
 });
-// returns [...]
+// returns [ 0, ~0.441, ~0.607, ~0.487, ~0.271, ~0.11 ]
 
 bool = ( x === out );
 // returns true
@@ -199,9 +200,9 @@ out = pdf( mat, {
 	'copy': false
 });
 /*
-	[
-
-	   ]
+	[ 0     ~0.441
+	 ~0.607 ~0.487
+	 ~0.271 ~0.11 ]
 */
 
 bool = ( mat === out );

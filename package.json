@@ -28,7 +28,9 @@
     "probability",
     "statistics",
     "stats",
-    "pdf"
+    "pdf",
+    "exponential family",
+    "continuous distribution"
   ],
   "bugs": {
     "url": "https://github.com/compute-io/rayleigh-pdf/issues"
