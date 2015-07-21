@@ -1,6 +1,6 @@
 options( digits = 16 )
 library( jsonlite )
-
+library( VGAM )
 
 sigma = 1
 x = seq( -1000, 1000, 0.5 )

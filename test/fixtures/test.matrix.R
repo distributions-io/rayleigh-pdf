@@ -1,7 +1,8 @@
 options( digits = 16 )
 library( jsonlite )
+library( VGAM )
 
-sigma = 1
+sigma = 4
 x = 0:24
 y = drayleigh( x, sigma )
 
