@@ -82,7 +82,7 @@ The function accepts the following `options`:
 *	__path__: [deepget](https://github.com/kgryte/utils-deep-get)/[deepset](https://github.com/kgryte/utils-deep-set) key path.
 *	__sep__: [deepget](https://github.com/kgryte/utils-deep-get)/[deepset](https://github.com/kgryte/utils-deep-set) key path separator. Default: `'.'`.
 
-A [Rayleigh](https://en.wikipedia.org/wiki/Rayleigh_distribution) distribution is a function of 1 parameter(s): `sigma`(scale parameter). By default, `sigma` is equal to `1`. To adjust either parameter, set the corresponding option(s).
+A [Rayleigh](https://en.wikipedia.org/wiki/Rayleigh_distribution) distribution is a function of one parameter: `sigma`(scale parameter). By default, `sigma` is equal to `1`. To adjust it, set the corresponding option.
 
 ``` javascript
 var x = [ 0, 0.5, 1, 1.5, 2, 2.5 ];
